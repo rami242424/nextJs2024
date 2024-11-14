@@ -17,10 +17,10 @@ export default async function MovieDetailPage({ params }: { params: Params }) {
     return (
     <div>
         <Suspense fallback={<h1>Loading movie info</h1>}>
-            <MovieInfo id={id}/>
+            <MovieInfo id={params.id}/>
         </Suspense>
         <Suspense fallback={<h1>Loading movie videos</h1>}>
-            <MovieVideo id={id}/>    
+            <MovieVideo id={params.id}/>    
         </Suspense>
     </div>
     );
