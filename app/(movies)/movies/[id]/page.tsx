@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import MovieInfo, { getMovie } from "../../../../components/movie-info";
-import MovieVideos from "../../../../components/movie-video";
+import MovieVideo from "../../../../components/movie-video";
 
 
 type IParams = Promise<{
@@ -25,7 +25,7 @@ export default async function MovieDetailPage(props: { params: IParams }) {
         <MovieInfo id={id} />
       </Suspense>
       <Suspense fallback={<h1>Loading movie videos</h1>}>
-        <MovieVideos id={id} />
+        <MovieVideo id={id} />
       </Suspense>
     </div>
   );
