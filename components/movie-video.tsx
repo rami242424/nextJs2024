@@ -1,13 +1,21 @@
 import { API_URL } from "../app/constants";
 import styles from "../styles/movie-videos.module.css";
 
+interface Video {
+  id: string;
+  key: string;
+  name: string;
+}
+
+
 async function getVideos(id: string) {
   const response = await fetch(`${API_URL}/${id}/videos`);
   return response.json();
 }
 
 export default async function MovieVideos({ id }: { id: string }) {
-  const videos = await getVideos(id);
+  const videos: Video[] = await getVideos(id);
+
   return (
     <div className={styles.container}>
       {videos.map((video) => (

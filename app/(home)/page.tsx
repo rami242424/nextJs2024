@@ -6,18 +6,26 @@ export const metadata = {
   title: "Home",
 };
 
-async function getMovies() {
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
+// 타입 정의
+interface MovieType {
+  id: string;
+  title: string;
+  poster_path: string;
+}
+
+// `getMovies` 함수의 반환 타입 명시
+async function getMovies(): Promise<MovieType[]> {
   const response = await fetch(API_URL);
   const json = await response.json();
-  return json;
+  return json; // API가 MovieType[]을 반환한다고 가정
 }
 
 export default async function HomePage() {
   const movies = await getMovies();
+
   return (
     <div className={styles.container}>
-      {movies.map((movie) => (
+      {movies.map((movie: MovieType) => (
         <Movie
           key={movie.id}
           id={movie.id}
@@ -28,5 +36,3 @@ export default async function HomePage() {
     </div>
   );
 }
-
-export const runtime = "edge";
